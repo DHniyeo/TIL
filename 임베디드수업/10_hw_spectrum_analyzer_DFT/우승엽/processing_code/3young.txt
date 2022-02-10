@@ -1,0 +1,39 @@
+import processing.serial.*;
+
+Serial port;
+
+int prevX = 10;  //  previous x pos
+int prevY = 300; //  previous y pos 
+
+int curX = 10;    // cur x pos
+int curY = 300;   // cur y pos
+int data = 0;     // value 
+
+void setup()
+{
+  size(800,400);
+  
+  port = new Serial(this, "/dev/ttyUSB0",115200);
+  
+  line(prevX, prevY, curX, curY);
+  
+  delay(4000);  //  for having enough time
+}
+
+void draw()
+{ 
+  int c = port.read();
+  
+  println(c);
+  
+  if (c == '1')       data = 100; 
+  else if (c == '0')  data = 300;
+  
+  curX += 1;    //  move curX like time
+  curY = data;  //  set data
+  
+  line(prevX, prevY, curX, curY);
+  
+  prevX = curX; //  save curX
+  prevY = curY; //  save curY
+}

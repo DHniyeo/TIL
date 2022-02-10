@@ -1,0 +1,1 @@
+timer에 대한 설정. sampling이 끝난 이후 계산도중 adc interupt 가 발생할수 없도록 설정을 해주어야하나?
